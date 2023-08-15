@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "spawneggs",
-  "version": "1.0.0",
+  "version": "1.1.0",
 
   "name": "Spawn Eggs",
   "description": "This mod backports spawn eggs to BTA.",
@@ -28,7 +28,8 @@
 
   "depends": {
     "fabricloader": ">=0.13.3",
-    "halplibe": ">=2.1.1"
+    "halplibe": ">=2.1.1",
+    "prismaticlibe": ">=1.0.2"
   },
   "suggests": {
   }

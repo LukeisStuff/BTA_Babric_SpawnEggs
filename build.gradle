@@ -40,6 +40,14 @@ repositories {
 		metadataSources { artifact() }
 	}
 	ivy {
+		url = "https://github.com/UselessBullets"
+		patternLayout {
+			artifact "[organisation]/releases/download/v[revision]/[module]-[revision].jar"
+			m2compatible = true
+		}
+		metadataSources { artifact() }
+	}
+	ivy {
 		url = "https://github.com/Turnip-Labs"
 		patternLayout {
 			artifact "[organisation]/releases/download/[revision]/[module]-bta-[revision].jar"
@@ -75,6 +83,8 @@ dependencies {
 	// Helper library
 	// If you do not need Halplibe you can comment this line out or delete this line
 	modImplementation "bta-halplibe:halplibe:${project.halplibe_version}"
+
+	modImplementation "BTA_Babric_PrismaticLibe:prismaticlibe:${project.prismatic_version}"
 
 	modImplementation "ModMenu:ModMenu:2.0.0"
 
