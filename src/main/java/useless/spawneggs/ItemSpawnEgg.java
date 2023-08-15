@@ -52,8 +52,8 @@ public class ItemSpawnEgg extends Item implements IColored{
                 throw new CommandError("Could not find entity \"" + entityID + "\"");
             }
             Entity entity = createEntity(entityClass, world);
-            entity.spawnInit();
             entity.moveTo(blockX + 0.5F, blockY, blockZ + 0.5F, entityplayer.yRot, 0.0f);
+            entity.spawnInit();
             world.entityJoinedWorld(entity);
         }
         return true;
