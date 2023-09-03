@@ -1,5 +1,6 @@
 package useless.spawneggs;
 
+import net.minecraft.core.block.entity.TileEntityMobSpawner;
 import net.minecraft.core.entity.Entity;
 import net.minecraft.core.entity.EntityDispatcher;
 import net.minecraft.core.entity.player.EntityPlayer;
@@ -34,6 +35,11 @@ public class ItemSpawnEgg extends Item implements IColored{
     }
 
     public boolean onItemUse(ItemStack itemstack, EntityPlayer entityplayer, World world, int blockX, int blockY, int blockZ, Side side, double xPlaced, double yPlaced) {
+        if (world.getBlockTileEntity(blockX, blockY, blockZ) instanceof TileEntityMobSpawner){
+            TileEntityMobSpawner spawner = (TileEntityMobSpawner)world.getBlockTileEntity(blockX, blockY, blockZ);
+            spawner.setMobID(entityName);
+            return true;
+        }
         itemstack.consumeItem(entityplayer);
         // Spawn entity from side used on
         blockX += side.getOffsetX();
