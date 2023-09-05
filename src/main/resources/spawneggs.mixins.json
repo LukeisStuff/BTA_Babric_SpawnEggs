@@ -4,6 +4,7 @@
     "package": "useless.spawneggs.mixin",
     "compatibilityLevel": "JAVA_8",
     "mixins": [
+        "MinecraftMixin"
     ],
     "client": [
     ],

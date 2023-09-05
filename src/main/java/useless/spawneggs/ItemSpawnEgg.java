@@ -14,9 +14,11 @@ import useless.prismaticlibe.IColored;
 
 import turniplabs.halplibe.helper.TextureHelper;
 
+import java.util.HashMap;
 import java.util.Set;
 
 public class ItemSpawnEgg extends Item implements IColored{
+    public static HashMap<String, Item> entityEggMap = new HashMap<String, Item>();
     private int colorBase;
     private int colorOverlay;
 
@@ -26,12 +28,11 @@ public class ItemSpawnEgg extends Item implements IColored{
         this.entityName = entityName;
         this.colorBase = colorBase;
         this.colorOverlay = colorOverlay;
+
+        entityEggMap.put(entityName.toLowerCase(), this);
     }
     public ItemSpawnEgg(String name, int id, String entityName) {
-        super(name, id);
-        this.entityName = entityName;
-        this.colorBase = 0XFFFFFF;
-        this.colorOverlay = 0XFFFFFF;
+        this(name, id, entityName, 0XFFFFFF, 0XFFFFFF);
     }
 
     public boolean onItemUse(ItemStack itemstack, EntityPlayer entityplayer, World world, int blockX, int blockY, int blockZ, Side side, double xPlaced, double yPlaced) {

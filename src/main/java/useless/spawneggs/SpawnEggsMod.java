@@ -108,6 +108,8 @@ public class SpawnEggsMod implements ModInitializer {
                 new ItemSpawnEgg("spawn.egg." + entities[arrayPos].toLowerCase(), num++, entities[arrayPos], 0x000000, 0xFFFF00),
                 "item.spawn.egg." + entities[arrayPos++].toLowerCase(), "spawnEggDefault.png");
 
+        ItemSpawnEgg.entityEggMap.put("Boat".toLowerCase(), Item.boat);
+        ItemSpawnEgg.entityEggMap.put("Minecart".toLowerCase(), Item.minecart);
 
         LOGGER.info("SpawnEggsMod initialized.");
     }
