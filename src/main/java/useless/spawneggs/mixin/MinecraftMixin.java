@@ -41,14 +41,16 @@ public class MinecraftMixin {
 
         if (mouseOver != null && mouseOver.hitType == HitResult.HitType.ENTITY) {
             String entityId = EntityDispatcher.getEntityString(mouseOver.entity);
-            Item item = ItemSpawnEgg.entityEggMap.get(entityId.toLowerCase());
-            if (item != null){
-                ItemStack spawnEgg = new ItemStack(item, 1);
-                addItemToPlayer(spawnEgg);
-                ci.cancel();
-            }
-            else {
-                SpawnEggsMod.LOGGER.warn("EntityId: " + entityId + " does not have a assigned pick entity item!");
+            if (entityId != null) {
+                Item item = ItemSpawnEgg.entityEggMap.get(entityId.toLowerCase());
+                if (item != null){
+                    ItemStack spawnEgg = new ItemStack(item, 1);
+                    addItemToPlayer(spawnEgg);
+                    ci.cancel();
+                }
+                else {
+                    SpawnEggsMod.LOGGER.warn("EntityId: " + entityId + " does not have a assigned pick entity item!");
+                }
             }
         }
     }
