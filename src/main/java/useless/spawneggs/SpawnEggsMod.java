@@ -54,6 +54,9 @@ public class SpawnEggsMod implements GameStartEntrypoint {
     public static int findNextEggId(){
         while (Item.itemsList[nextEggId] != null){
             nextEggId++;
+            if (nextEggId >= Item.itemsList.length){
+                throw new RuntimeException("next Item id (" + nextEggId + ") is outside the valid range of length: " + Item.itemsList.length);
+            }
         }
         return nextEggId;
     }
