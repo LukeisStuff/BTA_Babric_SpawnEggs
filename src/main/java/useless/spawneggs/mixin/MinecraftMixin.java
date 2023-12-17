@@ -4,21 +4,14 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.EntityPlayerSP;
 import net.minecraft.client.render.WorldRenderer;
 import net.minecraft.core.HitResult;
-import net.minecraft.core.Timer;
-import net.minecraft.core.block.Block;
-import net.minecraft.core.block.entity.TileEntity;
-import net.minecraft.core.entity.EntityDispatcher;
-import net.minecraft.core.enums.EnumDropCause;
-import net.minecraft.core.item.Item;
 import net.minecraft.core.item.ItemStack;
-import net.minecraft.core.player.gamemode.Gamemode;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import useless.spawneggs.ItemSpawnEgg;
+import useless.spawneggs.item.ItemSpawnEgg;
 import useless.spawneggs.SpawnEggsMod;
 
 @Mixin(value = Minecraft.class, remap = false)
@@ -29,28 +22,22 @@ public class MinecraftMixin {
     public WorldRenderer worldRenderer;
     @Shadow
     public HitResult objectMouseOver;
-    @Shadow
-    private Timer timer;
     @Inject(method = "clickMiddleMouseButton()V", at = @At("HEAD"), cancellable = true)
     private void pickEntity(CallbackInfo ci){
-        float ogReach = thePlayer.gamemode.entityReachDistance;
-        thePlayer.gamemode.entityReachDistance = 256;
+        float ogReach = thePlayer.gamemode.getEntityReachDistance();
+        thePlayer.gamemode.setEntityReachDistance(256);
         worldRenderer.getMouseOver(0);
         HitResult mouseOver = objectMouseOver;
-        thePlayer.gamemode.entityReachDistance = ogReach;
+        thePlayer.gamemode.setEntityReachDistance(ogReach);
 
         if (mouseOver != null && mouseOver.hitType == HitResult.HitType.ENTITY) {
-            String entityId = EntityDispatcher.getEntityString(mouseOver.entity);
-            if (entityId != null) {
-                Item item = ItemSpawnEgg.entityEggMap.get(entityId.toLowerCase());
-                if (item != null){
-                    ItemStack spawnEgg = new ItemStack(item, 1);
-                    addItemToPlayer(spawnEgg);
-                    ci.cancel();
-                }
-                else {
-                    SpawnEggsMod.LOGGER.warn("EntityId: " + entityId + " does not have a assigned pick entity item!");
-                }
+            ItemStack item = ItemSpawnEgg.entityEggMap.get(mouseOver.entity.getClass());
+            if (item != null){
+                addItemToPlayer(item);
+                ci.cancel();
+            }
+            else {
+                SpawnEggsMod.LOGGER.warn("EntityClass: " + mouseOver.entity.getClass().getName() + " does not have a assigned pick entity item!");
             }
         }
     }
@@ -83,7 +70,7 @@ public class MinecraftMixin {
             stackSize = stack.stackSize;
         }
         if (itemSlot == -1) {
-            if (!thePlayer.getGamemode().consumeBlocks) {
+            if (!thePlayer.getGamemode().consumeBlocks()) {
                 int emptySlot = -1;
                 for (int i = 0; i < thePlayer.inventory.getSizeInventory(); ++i) {
                     if (thePlayer.inventory.getStackInSlot(i) != null) continue;

@@ -18,8 +18,11 @@
 
   "environment": "*",
   "entrypoints": {
-    "main": [
+    "beforeGameStart": [
         "useless.spawneggs.SpawnEggsMod"
+    ],
+    "spawneggs": [
+        "useless.spawneggs.impl.SpawnEggsImpl"
     ]
   },
   "mixins": [
