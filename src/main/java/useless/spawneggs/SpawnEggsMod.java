@@ -37,7 +37,9 @@ public class SpawnEggsMod implements GameStartEntrypoint {
         String key = "spawn.egg." + entityName;
         int id = config.keyToIdMap.getOrDefault(key, findNextEggId());
         config.keyToIdMap.put(key, id);
-        return ItemHelper.createItem(MOD_ID, new ItemSpawnEgg(key, id, entityClass, colorBase, colorOverlay, nameOverride), entityName.toLowerCase(), "spawnEggDefault.png");
+        Item item = ItemHelper.createItem(MOD_ID, new ItemSpawnEgg(key, id, entityClass, colorBase, colorOverlay, nameOverride));
+        item.setKey("item.spawneggs." + entityName.toLowerCase());
+        return item;
     }
     public static void assignPickEntity(Class<? extends Entity> entityClass, IItemConvertible pickedItem){
         assignPickEntity(entityClass, pickedItem.getDefaultStack());

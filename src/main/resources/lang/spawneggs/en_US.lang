@@ -1,2 +1,23 @@
 mob.human=Player
 item.spawneggs=Spawn Egg
+
+item.item.spawneggs.chicken.desc=An egg capable of summoning a chicken.
+item.item.spawneggs.cow.desc=An egg capable of summoning a cow.
+item.item.spawneggs.creeper.desc=An egg capable of summoning a creeper.
+item.item.spawneggs.ghast.desc=An egg capable of summoning a ghast.
+item.item.spawneggs.pig.desc=An egg capable of summoning a pig.
+item.item.spawneggs.sheep.desc=An egg capable of summoning a sheep.
+item.item.spawneggs.wolf.desc=An egg capable of summoning a wolf.
+item.item.spawneggs.squid.desc=An egg capable of summoning a squid.
+item.item.spawneggs.spider.desc=An egg capable of summoning a spider.
+item.item.spawneggs.slime.desc=An egg capable of summoning a slime.
+item.item.spawneggs.skeleton.desc=An egg capable of summoning a skeleton.
+item.item.spawneggs.scorpion.desc=An egg capable of summoning a scorpion.
+item.item.spawneggs.snowman.desc=An egg capable of summoning a snowman.
+item.item.spawneggs.pigzombie.desc=An egg capable of summoning a zombie pigman.
+item.item.spawneggs.armouredzombie.desc=An egg capable of summoning an armoured zombie.
+item.item.spawneggs.monster.desc=An egg capable of summoning a monster.
+item.item.spawneggs.giant.desc=An egg capable of summoning a giant.
+item.item.spawneggs.fireflycluster.desc=An egg capable of summoning a cluster of fireflies.
+item.item.spawneggs.zombie.desc=An egg capable of summoning a zombie.
+

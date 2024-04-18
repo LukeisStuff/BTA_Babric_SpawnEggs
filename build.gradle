@@ -56,7 +56,7 @@ repositories {
 		metadataSources { artifact() }
 	}
 	ivy {
-		url = "https://github.com/UselessBullets"
+		url = "https://github.com/UselessSolutions"
 		patternLayout {
 			artifact "[organisation]/releases/download/v[revision]/[module]-[revision].jar"
 			m2compatible = true
@@ -95,7 +95,7 @@ dependencies {
 
 	modImplementation "BTA_Babric_PrismaticLibe:prismaticlibe:${project.prismatic_version}"
 
-	modImplementation "ModMenu:ModMenu:2.0.3"
+	modImplementation "ModMenu:ModMenu:${project.mod_menu_version}"
 
 	implementation "org.slf4j:slf4j-api:1.8.0-beta4"
 	implementation "org.apache.logging.log4j:log4j-slf4j18-impl:2.16.0"
@@ -108,6 +108,8 @@ dependencies {
 	implementation("org.apache.logging.log4j:log4j-api:${log4jVersion}")
 	implementation("org.apache.logging.log4j:log4j-1.2-api:${log4jVersion}")
 	implementation("log4j:apache-log4j-extras:1.2.17")
+
+	include(implementation("org.apache.commons:commons-lang3:3.12.0"))
 }
 
 java {
@@ -116,7 +118,7 @@ java {
 	withSourcesJar()
 }
 
-tasks.withType(JavaCompile) {
+tasks.withType(JavaCompile).configureEach {
 	options.release.set 8
 }
 
